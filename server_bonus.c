@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 16:47:59 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/05/11 01:01:35 by ael-mejd         ###   ########.fr       */
+/*   Created: 2024/05/11 02:13:08 by ael-mejd          #+#    #+#             */
+/*   Updated: 2024/05/11 02:14:00 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,4 @@ void    ft_putnbr(int n)
         ft_putnbr(n % 10);
     }
 }
-void    handler(int sig)
-{
-    static unsigned char c;
-    static int  i;
 
-    c |= (sig == SIGUSR1);
-    i++;
-    if (i == 8)
-    {
-        write(1, &c, 1);
-        i = 0;
-        c = 0;
-    }
-    else
-        c <<= 1;
-}
-
-int main()
-{
-    int pid;
-
-    pid = getpid();
-    write(1, "PID :", 5);
-    ft_putnbr(pid);
-    write(1, "\n", 1);
-    signal(SIGUSR1, handler);
-    signal(SIGUSR2, handler);
-    while (1)
-        pause();
-    return (0);
-}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 21:53:40 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/05/11 01:06:30 by ael-mejd         ###   ########.fr       */
+/*   Created: 2024/05/11 01:18:10 by ael-mejd          #+#    #+#             */
+/*   Updated: 2024/05/11 01:57:00 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,14 @@ int ft_atoi(char *str)
         print_error("kayn chi 7arf f PID lli dakhalty\n");
     return ((int)res * sign);
 }
+void    handler(int sign)
+{
+    if (sign == SIGUSR1)
+    {
+        write(1, "Send 1 bit : ", 14);
+        usleep(1337);
+    }
+}
 
 void    send_bit(int pid, unsigned char c)
 {
@@ -80,6 +88,7 @@ int main(int ac, char **av)
     i = 0;
     if (ac != 3)
         print_error("3 d les argument khsek\n");
+    signal(SIGUSR1, handler);
     pid = ft_atoi(av[1]);
     if (pid == -1)
         print_error("Invalid PID\n");
