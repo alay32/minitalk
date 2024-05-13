@@ -6,7 +6,7 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 16:47:59 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/05/11 01:01:35 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/05/11 13:49:45 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_putnbr(int n)
 		ft_putnbr(n % 10);
 	}
 }
+
 void	handler(int sig)
 {
 	static unsigned char	c;
@@ -51,7 +52,7 @@ void	handler(int sig)
 
 int	main(void)
 {
-	int pid;
+	int	pid;
 
 	pid = getpid();
 	write(1, "PID :", 5);

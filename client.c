@@ -6,15 +6,15 @@
 /*   By: ael-mejd <ael-mejd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 21:53:40 by ael-mejd          #+#    #+#             */
-/*   Updated: 2024/05/11 01:06:30 by ael-mejd         ###   ########.fr       */
+/*   Updated: 2024/05/14 00:28:01 by ael-mejd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	print_error(char *str)
+void print_error(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	write(2, "Error : ", 9);
@@ -26,11 +26,11 @@ void	print_error(char *str)
 	exit(1);
 }
 
-int	ft_atoi(char *str)
+int ft_atoi(char *str)
 {
-	int		i;
-	long	res;
-	int		sign;
+	int i;
+	long res;
+	int sign;
 
 	i = 0;
 	res = 0;
@@ -55,10 +55,10 @@ int	ft_atoi(char *str)
 	return ((int)res * sign);
 }
 
-void	send_bit(int pid, unsigned char c)
+void send_bit(int pid, unsigned char c)
 {
-	unsigned char	byte;
-	int				i;
+	unsigned char byte;
+	int i;
 
 	i = 7;
 	while (i >= 0)
@@ -72,7 +72,8 @@ void	send_bit(int pid, unsigned char c)
 		i--;
 	}
 }
-int	main(int ac, char **av)
+
+int main(int ac, char **av)
 {
 	int pid;
 	int i;
@@ -81,7 +82,7 @@ int	main(int ac, char **av)
 	if (ac != 3)
 		print_error("3 d les argument khsek\n");
 	pid = ft_atoi(av[1]);
-	if (pid == -1)
+	if (pid == -1 || pid == 0)
 		print_error("Invalid PID\n");
 	while (av[2][i])
 	{
